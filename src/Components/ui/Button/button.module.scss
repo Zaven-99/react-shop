@@ -1,0 +1,18 @@
+.btn{
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 150%;
+			text-align: center;
+			color: var(--main-white);
+			border: 1px solid var(--main-white);
+			border-radius: 6px;
+			padding: 16px 56px;
+			min-width: 191px;
+			min-height: 56px;
+			margin-top: 24px;
+			&:hover{
+				background-color:var(--main-white);
+				color:var(--main-black);
+				transition:0.3s;
+			}
+		}

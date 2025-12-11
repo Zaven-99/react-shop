@@ -1,0 +1,51 @@
+.banner-second__container{
+	.banner-second__inner{
+		background-image:url("/src/assets/banner/BannerImg2.jpg");
+		background-size:cover;
+		background-repeat:no-repeat;
+		min-height: 448px;
+		.banner-second__content{
+			min-width: 553px;
+			min-height: 200px;
+			padding-top: 159px;
+		}
+		.banner-second__title{
+			font-weight: 100;
+			font-size: 72px;
+			line-height: 100%;
+			letter-spacing: -0.01em;
+			text-align: center;
+			color: var(--main-white);
+			span{
+				font-weight: 500;
+			}
+		}
+		.banner-second__description{
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 200%;
+			text-align: center;
+			color: #787878;
+			margin-top:5px;
+		}
+		.btn{
+			border: 1px solid var(--main-white);
+			border-radius: 6px;
+			padding: 16px 56px;
+			width: 191px;
+			height: 56px;
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 150%;
+			text-align: center;
+			color: var(--main-white);
+			display: block;
+			margin: 40px auto 0 auto;
+			&:hover{
+			color:var(--main-black);
+			background-color:var(--main-white);
+			transition:0.3s;
+		}
+		}
+	}
+}

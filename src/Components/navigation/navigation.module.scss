@@ -1,0 +1,12 @@
+.navigation-list{
+	display: flex;
+	align-items:center;
+	gap: 16px;
+	padding-left: 160px;
+	.navigation-list__item{
+		display: flex;
+		align-items:center;
+		gap: 16px;
+	}
+ 
+}

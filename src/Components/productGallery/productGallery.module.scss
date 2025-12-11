@@ -1,0 +1,135 @@
+.grid-container{
+	display: grid;
+  	// grid-template-rows: repeat(3, 1fr);
+	
+	.first{
+		grid-column-end: 3;
+    	grid-column-start: 1;
+		width: 720px;
+		.wrapper{
+			width: 720px;
+			height: 328px;
+			display: flex;
+			align-items: center;
+			.first-description{
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 171%;
+				color: #909090;
+			}
+		}
+	}
+	.second{
+		grid-row-start: 1;
+		grid-row-end: 3;
+		grid-column-start: 3;
+		height: 600px;
+		background: #ededed;
+		grid-template-columns: 1fr auto;
+		display: grid;
+		.second-content {    
+			display: flex;
+			flex-direction: column;
+			justify-content: center;   
+			height: 100%;
+			max-width: 360px;
+			min-height: 272px;
+			margin-left: 56px;
+}
+		 .second-img{
+			display: flex;
+			flex-direction: column;
+			justify-content: center; 
+			align-items: center;       
+			height: 100%;    
+		 }
+		 .second-title{
+			font-weight: 100;
+			font-size: 64px;
+			line-height: 88%;
+			color: var(--main-black);
+			span{
+				font-weight: 500;
+			}
+		 }
+		 .second-description{
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 171%;
+			color: #909090;
+			margin-top: 16px;
+		 }
+	}
+	.third{
+		grid-column-end: 2;
+		width: 100%;
+		height: 272px;
+		background: #ededed;
+		display: flex;
+		align-items: center;
+		gap: 48px;
+		.third-content{
+			width: 160px;
+		}
+		.third-title{
+			font-weight: 300;
+			font-size: 29px;
+			line-height: 138%;
+			color: var(--main-black);
+			span{
+				font-weight: 500;
+			}
+		}
+		.third-description{
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 171%;
+			color: #909090;
+			margin-top: 8px;
+		}
+	}
+		.fourth{
+			width: 100%;
+			height: 272px;
+			background: #353535;
+			display: flex;
+			align-items:center;
+			gap: 16px;
+			.fourth-content{
+				width: 160px;
+			}
+			.fourth-title{
+				font-weight: 300;
+				font-size: 29px;
+				line-height: 138%;
+				color: var(--main-white);
+				span{
+					font-weight: 500;
+				}
+			}
+			.fourth-description{
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 171%;
+				color: #909090;
+			}
+		}
+	 .btn{
+		border: 1px solid var(--main-black);
+		border-radius: 6px;
+		padding: 16px 56px;
+		width: 191px;
+		height: 56px;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 150%;
+		text-align: center;
+		color: var(--main-black);
+		margin-top: 16px;
+		&:hover{
+			color:var(--main-white);
+			background-color:var(--main-black);
+			transition:0.3s;
+		}
+	 }
+}
