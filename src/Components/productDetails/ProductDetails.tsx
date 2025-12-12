@@ -2,7 +2,9 @@ import { useProductDetails } from "../../bll/useProductDetails";
 import Button from "../ui/Button/Button";
 import MoreDetails from "./moreDetails/MoreDetails";
 import styles from "./productDetails.module.scss";
+import Rating from "./rating/Rating";
 import Review from "./Review/Review";
+
 const ProductDetails = () => {
   const { productDetails, setActiveImage, activeImage } = useProductDetails();
   if (!productDetails) return <>...loading</>;
@@ -59,6 +61,7 @@ const ProductDetails = () => {
           </div>
         </div>
         <MoreDetails productDetails={productDetails} />
+        <Rating productDetails={productDetails} />
         <Review productDetails={productDetails} />
       </div>
     </section>

@@ -14,7 +14,7 @@ function App() {
       />
       <Route path="catalog" element={<CatalogPage />} />
     </Routes>
-  );
+  )
 }
 
 export default App;

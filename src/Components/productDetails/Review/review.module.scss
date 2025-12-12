@@ -1,0 +1,46 @@
+.review-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  .review-list {
+    margin: 0 160px 0 160px;
+    .review {
+      display: flex;
+      align-items: flex-start;
+      gap: 19px;
+      margin-top: 24px;
+      border-radius: 10px;
+      padding: 24px 28px 24px 16px;
+      background: #fafafa;
+      .avatar-img {
+        width: 40px;
+      }
+      .review-content {
+        width: 100%;
+        .review-name {
+          font-weight: 700;
+          font-size: 17px;
+          line-height: 141%;
+          color: var(--main-black);
+        }
+        .review-email {
+          font-weight: 500;
+          font-size: 17px;
+          line-height: 141%;
+          color: var(--main-black);
+        }
+        .review-rating {
+          color: #ffb547;
+        }
+        .review-comment {
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 160%;
+          color: #7e7e7e;
+        }
+      }
+      .review-date {
+        text-align: end;
+      }
+    }
+  }
+}
