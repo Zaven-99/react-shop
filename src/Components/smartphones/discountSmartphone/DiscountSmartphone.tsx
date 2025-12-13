@@ -1,8 +1,15 @@
 import DiscountSmartphoneItem from "./discountSmartphoneItem/DiscountSmartphoneItem";
 import { useDiscountSmartphone } from "../../../bll/useDiscountSmartphone";
+import Loading from "../../ui/loading/Loading";
+import Error from "../../ui/error/Error";
+
 import styles from "./discountSmartphone.module.scss";
 const DiscountProducts = () => {
-  const { discountSmartphone } = useDiscountSmartphone();
+  const { discountSmartphone, error, loading } = useDiscountSmartphone();
+
+  if (error) return <Error label={error} />;
+  if (loading) return <Loading />;
+
   return (
     <section>
       <div className={styles["discount-products__container"]}>

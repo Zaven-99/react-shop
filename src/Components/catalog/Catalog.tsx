@@ -1,10 +1,15 @@
 import { useCatalog } from "../../bll/useCatalog";
+import Button from "../ui/Button/Button";
+import Loading from "../ui/loading/Loading";
+import Error from "../ui/error/Error";
+
 import styles from "./catalog.module.scss";
 import add from "../../assets/icons/productsItem/add.svg";
-import Button from "../ui/Button/Button";
-const Catalog = () => {
-  const { allProducts } = useCatalog();
 
+const Catalog = () => {
+  const { allProducts, error, loading } = useCatalog();
+  if (loading) return <Loading />;
+  if (error) return <Error label={error} />;
   return (
     <section>
       <div className={styles["catalog-container"]}>

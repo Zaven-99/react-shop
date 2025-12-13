@@ -1,16 +1,26 @@
-import { useEffect, useState } from 'react';
-import { getDiscountProducts } from '../dal/api';
-import type { Products } from '../dal/types';
+import { useEffect, useState } from "react";
+import { getDiscountProducts } from "../dal/api";
+import type { Products } from "../dal/types";
 
-export function useDiscountSmartphone(){
-	const [discountSmartphone, setDiscountSmartphone] = useState<Products[]>([])
+export function useDiscountSmartphone() {
+  const [discountSmartphone, setDiscountSmartphone] = useState<Products[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchDiscountSmartphone = async () => {
+      setLoading(true);
+      try {
+        const discountSmartphone = await getDiscountProducts();
+        setDiscountSmartphone(discountSmartphone.products);
+      } catch {
+        setError("Не удалось загрузить данные");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	useEffect(() => {
-		getDiscountProducts().
-			then(data => setDiscountSmartphone(data.products)).
-				catch(err => console.log(err))
-	},[])
+    fetchDiscountSmartphone();
+  }, []);
 
-	return {discountSmartphone}
-
+  return { discountSmartphone, error, loading };
 }

@@ -1,13 +1,28 @@
 import { useProductDetails } from "../../bll/useProductDetails";
 import Button from "../ui/Button/Button";
+import Error from "../ui/error/Error";
+import Loading from "../ui/loading/Loading";
 import MoreDetails from "./moreDetails/MoreDetails";
 import styles from "./productDetails.module.scss";
 import Rating from "./rating/Rating";
 import Review from "./Review/Review";
 
 const ProductDetails = () => {
-  const { productDetails, setActiveImage, activeImage } = useProductDetails();
-  if (!productDetails) return <>...loading</>;
+  const {
+    productDetails,
+    activeImage,
+    loading,
+    error,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = useProductDetails();
+  if (loading || !productDetails) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error label={error} />;
+  }
   const mainImage = activeImage || productDetails.thumbnail;
   return (
     <section>
@@ -18,8 +33,8 @@ const ProductDetails = () => {
               {productDetails.images.map((item, index) => (
                 <div key={index}>
                   <img
-                    onMouseEnter={() => setActiveImage(item)}
-                    onMouseLeave={() => setActiveImage(null)}
+                    onMouseEnter={() => handleMouseEnter(item)}
+                    onMouseLeave={handleMouseLeave}
                     className={styles["images"]}
                     src={item}
                     alt=""

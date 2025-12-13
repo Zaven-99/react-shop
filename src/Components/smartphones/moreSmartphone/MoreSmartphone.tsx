@@ -1,8 +1,14 @@
 import MoreSmartphoneItem from "./moreSmartphoneItem/MoreSmartphoneItem";
 import { useMoreSmartphone } from "../../../bll/useMoreSmartphone";
+import Loading from "../../ui/loading/Loading";
+import Error from "../../ui/error/Error";
+
 import styles from "./moreSmartphone.module.scss";
 const MoreSmartphone = () => {
-  const { moreSmartphone } = useMoreSmartphone();
+  const { moreSmartphone, error, loading } = useMoreSmartphone();
+
+  if (error) return <Error label={error} />;
+  if (loading) return <Loading />;
 
   return (
     <section>

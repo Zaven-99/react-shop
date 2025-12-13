@@ -1,9 +1,15 @@
 import { useSmartphone } from "../../bll/useSmartphone";
 import SmartphoneItem from "./smartphoneItem/SmartphoneItem";
+import Error from "../ui/error/Error";
+import Loading from "../ui/loading/Loading";
+
 import styles from "./smartphone.module.scss";
 
 const Smartphone = () => {
-  const { smartphone } = useSmartphone();
+  const { smartphone, error, loading } = useSmartphone();
+
+  if (error) return <Error label={error} />;
+  if (loading) return <Loading />;
 
   return (
     <main>
