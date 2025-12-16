@@ -1,4 +1,4 @@
-import type { Products } from "./types";
+import type { Category, Products, SearchResponse } from "./types";
 
 export const getSmartphone = async () => {
   const response = await fetch(
@@ -54,12 +54,13 @@ export const getLaptops = async () => {
   );
   if (!response.ok) {
     throw Error(
-      `Ошибка при загрузку ${response.status} ${response.statusText}`
+      `Ошибка при загрузке ${response.status} ${response.statusText}`
     );
   }
   return response.json();
 };
 
+//! У API dummyjson нет endpoint для всех продуктов
 export const getAllProducts = async (): Promise<Products[]> => {
   const categories = ["smartphones", "tablets", "laptops"];
 
@@ -89,4 +90,45 @@ export const getProductById = async (id: number): Promise<Products> => {
   }
 
   return response.json();
+};
+
+export const getFilteredProduct = async (
+  value: string
+): Promise<Products[]> => {
+  const response = await fetch(
+    `https://dummyjson.com/products/search?q=${value}`
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Ошибка при загрузке ${response.status} ${response.statusText}`
+    );
+  }
+
+  const data: SearchResponse = await response.json();
+  return data.products;
+};
+
+export const getCategories = async (): Promise<Category[]> => {
+  const response = await fetch("https://dummyjson.com/products/categories");
+
+  if (!response.ok) {
+    throw new Error(
+      `Ошибка при загрузке ${response.status} ${response.statusText}`
+    );
+  }
+
+  return response.json();
+};
+
+export const getProductByCategoryName = async (categories: string[]) => {
+  const allProducts: Products[] = [];
+
+  for (const cat of categories) {
+    const res = await fetch(`https://dummyjson.com/products/category/${cat}`);
+    const data = await res.json();
+    allProducts.push(...data.products);
+  }
+
+  return allProducts;
 };

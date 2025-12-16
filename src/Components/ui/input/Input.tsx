@@ -1,11 +1,19 @@
 interface Input {
   className: string;
   type: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Input = ({ className, type }: Input) => {
+const Input = ({ className, type, value, onChange }: Input) => {
   return (
     <div>
-      <input className={className} type={type} placeholder="Search " />
+      <input
+        onChange={onChange}
+        value={value}
+        className={className}
+        type={type}
+        placeholder="Search "
+      />
     </div>
   );
 };

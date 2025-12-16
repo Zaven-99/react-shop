@@ -34,3 +34,20 @@ export interface Products {
   tags?: string[];
   weight: string;
 }
+export interface SearchResponse {
+  products: Products[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+export interface Category {
+  slug: string;
+  name: string;
+  url: string;
+}
+
+export interface FiltersVisibility {
+  category: boolean;
+  price: boolean;
+  brand: boolean;
+}

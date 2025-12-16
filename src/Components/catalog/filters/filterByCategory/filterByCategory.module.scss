@@ -1,0 +1,21 @@
+.filter-categories {
+  margin-top: 20px;
+  .filter-categories__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+    .filter-categories__up {
+      transform: rotate(180deg);
+    }
+    .active {
+      transform: rotate(180deg);
+    }
+  }
+  .filter-categories__item {
+    margin-top: 10px;
+  }
+}
