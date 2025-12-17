@@ -6,8 +6,10 @@ const CatalogPage = () => {
   return (
     <div>
       <Header />
-      <Catalog />
-      <Footer />
+      <div style={{ paddingTop: "100px" }}>
+        <Catalog />
+        <Footer />
+      </div>
     </div>
   );
 };

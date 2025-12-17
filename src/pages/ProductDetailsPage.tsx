@@ -7,8 +7,10 @@ const ProductDetailsPage = () => {
   return (
     <div>
       <Header />
-      <Navigation />
-      <ProductDetails />
+      <div style={{ paddingTop: "100px" }}>
+        <Navigation />
+        <ProductDetails />
+      </div>
       <Footer />
     </div>
   );

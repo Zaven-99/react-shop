@@ -1,22 +1,24 @@
 import React from "react";
 import type { Products } from "../../../../dal/types";
-// import { useDispatch } from "react-redux";
 
 import Button from "../../../ui/Button/Button";
 
 import styles from "./productItem.module.scss";
 
 import favorites from "../../../../assets/icons/productsItem/add.svg";
-// import type { AppDispatch } from "../../../../store/store";
-// import { addToCart } from "../../../../store/cartSlice";
+import {
+  addToCart,
+  decrementQuantity,
+  incrementQuantity,
+} from "../../../../store/cartSlice";
+import { useProductItem } from "../../../../bll/useProductItem";
 
 interface ProductList {
   filteredProducts: Products[];
 }
 
 const ProductItem = React.memo(({ filteredProducts }: ProductList) => {
-  // const dispatch = useDispatch<AppDispatch>();
-
+  const { count, dispatch, cartItems } = useProductItem();
   return (
     <>
       {filteredProducts.map((item) => (
@@ -35,12 +37,30 @@ const ProductItem = React.memo(({ filteredProducts }: ProductList) => {
             </p>
             <h2 className={styles["product-price"]}>${item.price}</h2>
           </div>
-          <Button
-            // onClick={() => dispatch(addToCart(item))}
-            type="button"
-            className={styles.btn}
-            label="Buy Now"
-          />
+          {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+            <div className={styles["btn-block"]}>
+              <Button
+                label="-"
+                type="button"
+                className={styles["decrement-btn"]}
+                onClick={() => dispatch(decrementQuantity(item.id))}
+              />
+              <span className={styles.quantity}>{count(item.id)}</span>
+              <Button
+                onClick={() => dispatch(incrementQuantity(item.id))}
+                label="+"
+                type="button"
+                className={styles["increment-btn"]}
+              />
+            </div>
+          ) : (
+            <Button
+              onClick={() => dispatch(addToCart(item))}
+              type="button"
+              className={styles["add-to__cart"]}
+              label="Buy Now"
+            />
+          )}
         </div>
       ))}
     </>

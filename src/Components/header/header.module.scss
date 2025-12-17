@@ -1,5 +1,10 @@
 .header-container {
   padding: 16px 160px;
+  position: fixed;
+  background: var(--main-white);
+  width: 100%;
+  z-index: 6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.12);
   .logo {
     cursor: pointer;
   }

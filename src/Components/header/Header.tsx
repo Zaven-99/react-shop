@@ -15,6 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { inputValue, setInputValue, filteredProducts, hasSearched } =
     useFilter(1000, false);
+
   return (
     <header>
       <div className={styles["header-container"]}>

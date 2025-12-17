@@ -20,7 +20,6 @@ const ProductDetails = () => {
     handleMouseLeave,
   } = useProductDetails();
   if (loading || !productDetails) return <Loading />;
-
   if (error) return <Error label={error} />;
 
   return (

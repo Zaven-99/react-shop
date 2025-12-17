@@ -29,30 +29,65 @@
   gap: 15px;
   position: absolute;
   bottom: 0;
-}
-.addToWishlist {
-  border: 1px solid var(--main-black);
-  border-radius: 6px;
-  padding: 16px 56px;
-  width: 260px;
-  height: 56px;
-  min-width: 136px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-  text-align: center;
-  color: var(--main-black);
-}
-.addToCard {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
-  text-align: center;
-  color: var(--main-white);
-  border-radius: 6px;
-  padding: 16px 56px;
-  width: 260px;
-  height: 56px;
-  min-width: 136px;
-  background: var(--main-black);
+
+  .addToWishlist {
+    border: 1px solid var(--main-black);
+    border-radius: 6px;
+    padding: 16px 56px;
+    width: 260px;
+    height: 56px;
+    min-width: 136px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--main-black);
+  }
+  .add-to__cart {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: var(--main-white);
+    border-radius: 6px;
+    padding: 16px 56px;
+    width: 260px;
+    height: 56px;
+    min-width: 136px;
+    background: var(--main-black);
+  }
+  .quantity-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    .decrement-btn {
+      display: block;
+      border-radius: 8px;
+      padding: 12px 32px;
+      width: 100%;
+      background: var(--main-black);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 171%;
+      text-align: center;
+      color: var(--main-white);
+      height: 56px;
+      cursor: pointer;
+    }
+    .increment-btn {
+      display: block;
+      border-radius: 8px;
+      padding: 12px 32px;
+      width: 100%;
+      background: var(--main-black);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 171%;
+      text-align: center;
+      color: var(--main-white);
+      height: 56px;
+      cursor: pointer;
+    }
+  }
 }

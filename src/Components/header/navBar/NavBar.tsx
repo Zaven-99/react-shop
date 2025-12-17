@@ -5,8 +5,10 @@ import cart from "../../../assets/icons/cart.svg";
 import user from "../../../assets/icons/user.svg";
 
 import styles from "./navBar.module.scss";
+import { useNavbar } from "../../../bll/useNavbar";
 
 const NavBar = () => {
+  const { totalQuantity } = useNavbar();
   return (
     <div className={styles["navBar-container"]}>
       <ul className={styles.links}>
@@ -31,9 +33,17 @@ const NavBar = () => {
             alt="favorites"
           />
         </Link>
-        <Link to="/cart">
-          <img className={styles["action-icons__item"]} src={cart} alt="cart" />
-        </Link>
+        <div className={styles.cart}>
+          <Link to="/cart">
+            <img
+              className={styles["action-icons__item"]}
+              src={cart}
+              alt="cart"
+            />
+          </Link>
+          <span className={styles["total-quantity"]}>{totalQuantity}</span>
+        </div>
+
         <Link to="#">
           <img className={styles["action-icons__item"]} src={user} alt="user" />
         </Link>
