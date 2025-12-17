@@ -1,7 +1,9 @@
 import { useRating } from "../../../bll/useRating";
 import { useReview } from "../../../bll/useReview";
 import type { Products } from "../../../dal/types";
+
 import styles from "./rating.module.scss";
+
 interface Rating {
   productDetails: Products;
 }

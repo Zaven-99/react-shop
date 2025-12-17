@@ -1,0 +1,19 @@
+.navBar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 56px;
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    .links-item:hover {
+      opacity: 0.7;
+    }
+  }
+  .action-icons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+}

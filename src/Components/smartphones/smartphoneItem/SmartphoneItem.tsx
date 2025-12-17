@@ -2,8 +2,9 @@ import React from "react";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./smartphoneItem.module.scss";
 import add from "../../../assets/icons/productsItem/add.svg";
+
+import styles from "./smartphoneItem.module.scss";
 
 interface SmartphoneItem {
   id: number;

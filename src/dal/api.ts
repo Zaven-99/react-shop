@@ -95,6 +95,8 @@ export const getProductById = async (id: number): Promise<Products> => {
 export const getFilteredProduct = async (
   value: string
 ): Promise<Products[]> => {
+  const ALLOWED_CATEGORIES = ["smartphones", "tablets", "laptops"];
+
   const response = await fetch(
     `https://dummyjson.com/products/search?q=${value}`
   );
@@ -106,7 +108,9 @@ export const getFilteredProduct = async (
   }
 
   const data: SearchResponse = await response.json();
-  return data.products;
+  return data.products.filter((product) =>
+    ALLOWED_CATEGORIES.includes(product.category)
+  );
 };
 
 export const getCategories = async (): Promise<Category[]> => {

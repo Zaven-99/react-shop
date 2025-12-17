@@ -1,8 +1,12 @@
-import styles from "./banner.module.scss";
-import bannerImg from "../../assets/banner/bannerImg.png";
 import Button from "../ui/Button/Button";
 
+import bannerImg from "../../assets/banner/bannerImg.png";
+
+import styles from "./banner.module.scss";
+import { useNavigate } from "react-router-dom";
+
 const Banner = () => {
+  const navigate = useNavigate();
   return (
     <section>
       <div className={styles["banner-container"]}>
@@ -15,13 +19,18 @@ const Banner = () => {
             <p className={styles["banner-description"]}>
               Created to change everything for the better. For everyone
             </p>
-            <Button type="button" label="Shop Now" className={styles.btn} />
+            <Button
+              onClick={() => navigate("/catalog")}
+              type="button"
+              label="Shop Now"
+              className={styles.btn}
+            />
           </div>
           <div className={styles["banner-img"]}>
             <img
               className={styles["banner-image"]}
               src={bannerImg}
-              alt={bannerImg}
+              alt="banner"
             />
           </div>
         </div>

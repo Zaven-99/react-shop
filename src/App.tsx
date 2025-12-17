@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CatalogPage from "./pages/CatalogPage";
+import CartPage from "./pages/CartPage";
+import FavoritePage from "./pages/FavoritePage";
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
         element={<ProductDetailsPage />}
       />
       <Route path="catalog" element={<CatalogPage />} />
+      <Route path="cart" element={<CartPage />} />
+      <Route path="favorite" element={<FavoritePage />} />
     </Routes>
-  )
+  );
 }
 
 export default App;

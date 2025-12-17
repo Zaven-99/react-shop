@@ -1,9 +1,11 @@
-import MoreSmartphoneItem from "./moreSmartphoneItem/MoreSmartphoneItem";
 import { useMoreSmartphone } from "../../../bll/useMoreSmartphone";
+
+import MoreSmartphoneItem from "./moreSmartphoneItem/MoreSmartphoneItem";
 import Loading from "../../ui/loading/Loading";
 import Error from "../../ui/error/Error";
 
 import styles from "./moreSmartphone.module.scss";
+
 const MoreSmartphone = () => {
   const { moreSmartphone, error, loading } = useMoreSmartphone();
 

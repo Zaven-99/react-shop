@@ -3,17 +3,18 @@
   align-items: center;
   justify-content: space-between;
   width: 362px;
-
   margin-top: 10px;
   .product-img {
     width: 50px;
   }
-  .product-content {
-    display: flex;
-    .product-price {
-      font-size: 20px;
-    }
+  .product-title {
+    font-size: 12px;
   }
+
+  .product-price {
+    font-size: 12px;
+  }
+
   .btn-block {
     display: flex;
     align-items: center;
@@ -21,10 +22,10 @@
     .btn {
       display: block;
       border-radius: 8px;
-      padding: 12px 32px;
+      padding: 5px 5px;
       background: var(--main-black);
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 171%;
       text-align: center;
       color: var(--main-white);

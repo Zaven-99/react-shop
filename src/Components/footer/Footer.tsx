@@ -1,10 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
-import styles from "./footer.module.scss";
+
 import logo from "../../assets/logoFooter.svg";
 import twitter from "../../assets/icons/social/twitter.svg";
 import facebook from "../../assets/icons/social/facebook.svg";
 import tiktok from "../../assets/icons/social/tiktok.svg";
 import instagram from "../../assets/icons/social/instagram.svg";
+
+import styles from "./footer.module.scss";
+
 const Footer = () => {
   return (
     <footer>
@@ -19,7 +22,7 @@ const Footer = () => {
                     window.scrollTo({ top: 0, behavior: "smooth" })
                   }
                   src={logo}
-                  alt={logo}
+                  alt="logo"
                 />
               </li>
               <li className={styles["links-item"]}>
@@ -86,21 +89,21 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={facebook} alt={facebook} />
+                <img src={facebook} alt="facebook" />
               </NavLink>
               <NavLink
                 to="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={tiktok} alt={tiktok} />
+                <img src={tiktok} alt="tiktok" />
               </NavLink>
               <NavLink
                 to="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={instagram} alt={instagram} />
+                <img src={instagram} alt="instagram" />
               </NavLink>
             </div>
           </div>

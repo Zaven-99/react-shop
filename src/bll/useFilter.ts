@@ -139,6 +139,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
             setLoading(false);
           }
         })();
+        return;
       }
     }, delay);
 

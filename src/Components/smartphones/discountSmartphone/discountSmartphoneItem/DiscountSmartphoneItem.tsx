@@ -1,8 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import Button from "../../../ui/Button/Button";
+
 import add from "../../../../assets/icons/productsItem/add.svg";
+
 import styles from "./discountSmartphoneItem.module.scss";
+
 interface DiscountSmartphoneItem {
   id: number;
   title: string;

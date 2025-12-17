@@ -1,7 +1,9 @@
 import type { Products } from "../../../dal/types";
-import avatar from "../../../assets/icons/review/user.png";
-import styles from "./review.module.scss";
 import { useReview } from "../../../bll/useReview";
+
+import avatar from "../../../assets/icons/review/user.png";
+
+import styles from "./review.module.scss";
 
 interface Review {
   productDetails: Products;

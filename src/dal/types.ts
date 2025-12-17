@@ -33,6 +33,7 @@ export interface Products {
   minimumOrderQuantity?: string;
   tags?: string[];
   weight: string;
+  quantity?: number;
 }
 export interface SearchResponse {
   products: Products[];

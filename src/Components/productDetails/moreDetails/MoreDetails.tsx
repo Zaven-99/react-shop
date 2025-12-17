@@ -1,4 +1,5 @@
 import type { Products } from "../../../dal/types";
+
 import styles from "./moreDetails.module.scss";
 
 interface MoreDetails {

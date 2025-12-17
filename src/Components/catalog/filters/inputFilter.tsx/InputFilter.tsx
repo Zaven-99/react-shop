@@ -1,7 +1,9 @@
-import styles from "./inputFilter.module.scss";
 import search from "../../../../assets/icons/search.svg";
 import Input from "../../../ui/input/Input";
 import reset from "../../../../assets/icons/close.svg";
+
+import styles from "./inputFilter.module.scss";
+
 interface InputFilter {
   value: string;
   setValue: (value: string) => void;

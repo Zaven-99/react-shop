@@ -1,8 +1,11 @@
-import styles from "./searchResult.module.scss";
-import type { Products } from "../../../dal/types";
-import Button from "../../ui/Button/Button";
-import add from "../../../assets/icons/productsItem/add.svg";
 import { useNavigate } from "react-router-dom";
+import type { Products } from "../../../dal/types";
+
+import Button from "../../ui/Button/Button";
+
+import favorites from "../../../assets/icons/productsItem/add.svg";
+
+import styles from "./searchResult.module.scss";
 
 interface SearchResult {
   filteredProducts: Products[];
@@ -19,12 +22,22 @@ const SearchResult = ({ filteredProducts }: SearchResult) => {
             src={item.thumbnail}
             alt={item.title}
           />
-
+          <p className={styles["product-title"]}>
+            {item.title.slice(0, 10) + "..."}
+          </p>
           <h2 className={styles["product-price"]}>${item.price}</h2>
 
           <div className={styles["btn-block"]}>
-            <img className={styles.add} src={add} alt={add} />
-            <Button type="button" className={styles.btn} label="Buy Now" />
+            <img className={styles.add} src={favorites} alt="favorites" />
+
+            <Button
+              onClick={() =>
+                navigate(`/products/${item.category}/${item.brand}/${item.id}`)
+              }
+              type="button"
+              className={styles.btn}
+              label="Buy Now"
+            />
           </div>
         </div>
       ))}

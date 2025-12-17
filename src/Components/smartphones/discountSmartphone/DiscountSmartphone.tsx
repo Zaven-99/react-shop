@@ -1,9 +1,11 @@
-import DiscountSmartphoneItem from "./discountSmartphoneItem/DiscountSmartphoneItem";
 import { useDiscountSmartphone } from "../../../bll/useDiscountSmartphone";
+
+import DiscountSmartphoneItem from "./discountSmartphoneItem/DiscountSmartphoneItem";
 import Loading from "../../ui/loading/Loading";
 import Error from "../../ui/error/Error";
 
 import styles from "./discountSmartphone.module.scss";
+
 const DiscountProducts = () => {
   const { discountSmartphone, error, loading } = useDiscountSmartphone();
 

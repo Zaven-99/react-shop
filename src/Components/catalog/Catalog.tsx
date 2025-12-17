@@ -1,10 +1,10 @@
+import { useFilter } from "../../bll/useFilter";
 import Loading from "../ui/loading/Loading";
 import Error from "../ui/error/Error";
-
-import styles from "./catalog.module.scss";
 import ProductList from "./productList/ProductList";
 import Filters from "./filters/Filters";
-import { useFilter } from "../../bll/useFilter";
+
+import styles from "./catalog.module.scss";
 
 const Catalog = () => {
   const {

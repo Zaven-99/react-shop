@@ -1,6 +1,7 @@
-import styles from "./categories.module.scss";
 import arrowLeft from "../../assets/icons/category/arrow/arrowLeft.svg";
 import arrowRight from "../../assets/icons/category/arrow/arrowRight.svg";
+
+import styles from "./categories.module.scss";
 const Categories = () => {
   return (
     <section>
@@ -11,12 +12,12 @@ const Categories = () => {
             <img
               className={styles["arrow-left"]}
               src={arrowLeft}
-              alt={arrowLeft}
+              alt="arrowLeft"
             />
             <img
               className={styles["arrow-right"]}
               src={arrowRight}
-              alt={arrowLeft}
+              alt="arrowRight"
             />
           </div>
         </div>

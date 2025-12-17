@@ -1,6 +1,10 @@
-import styles from "./bannerSecond.module.scss";
+import { useNavigate } from "react-router-dom";
 import Button from "../../ui/Button/Button";
+
+import styles from "./bannerSecond.module.scss";
+
 const BannerSecond = () => {
+  const navigate = useNavigate();
   return (
     <section>
       <div className={styles["banner-second__container"]}>
@@ -12,7 +16,12 @@ const BannerSecond = () => {
             <p className={styles["banner-second__description"]}>
               Commodo fames vitae vitae leo mauris in. Eu consequat.
             </p>
-            <Button type="button" label="Shop Now" className={styles.btn} />
+            <Button
+              onClick={() => navigate("/catalog")}
+              type="button"
+              label="Shop Now"
+              className={styles.btn}
+            />
           </div>
         </div>
       </div>

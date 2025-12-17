@@ -1,4 +1,5 @@
 import { useSmartphone } from "../../bll/useSmartphone";
+
 import SmartphoneItem from "./smartphoneItem/SmartphoneItem";
 import Error from "../ui/error/Error";
 import Loading from "../ui/loading/Loading";
