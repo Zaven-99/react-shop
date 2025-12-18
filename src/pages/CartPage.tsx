@@ -1,5 +1,5 @@
-import Header from "../Components/header/Header";
-import Footer from "../Components/footer/Footer";
+import Header from "../Components/home/header/Header";
+import Footer from "../Components/home/footer/Footer";
 import Cart from "../Components/cart/Cart";
 
 const CartPage = () => {
@@ -8,8 +8,8 @@ const CartPage = () => {
       <Header />
       <div style={{ paddingTop: "100px" }}>
         <Cart />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };

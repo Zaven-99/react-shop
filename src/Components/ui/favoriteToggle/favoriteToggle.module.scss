@@ -1,0 +1,19 @@
+.favorite {
+  position: absolute;
+  right: 17px;
+  top: 25px;
+  cursor: pointer;
+}
+.addToWishlist {
+  border: 1px solid var(--main-black);
+  border-radius: 6px;
+  padding: 16px 56px;
+  width: 100%;
+  height: 56px;
+  min-width: 136px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--main-black);
+}

@@ -3,9 +3,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Products } from "../dal/types";
 
 interface CartProducts extends Products {
-  id: number;
-  title: string;
-  price: number;
   quantity: number;
 }
 

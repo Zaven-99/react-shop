@@ -1,12 +1,12 @@
-import Banner from "../Components/banner/Banner";
-import BannerSecond from "../Components/banner/bannerSecond/BannerSecond";
-import Categories from "../Components/categories/Categories";
-import Footer from "../Components/footer/Footer";
-import Header from "../Components/header/Header";
-import ProductGallery from "../Components/productGallery/ProductGallery";
-import DiscountSmartphone from "../Components/smartphones/discountSmartphone/DiscountSmartphone";
-import MoreSmartphone from "../Components/smartphones/moreSmartphone/MoreSmartphone";
-import Smartphone from "../Components/smartphones/Smartphone";
+import Banner from "../Components/home/banner/Banner";
+import BannerSecond from "../Components/home/banner/bannerSecond/BannerSecond";
+import Categories from "../Components/home/categories/Categories";
+import Footer from "../Components/home/footer/Footer";
+import Header from "../Components/home/header/Header";
+import ProductGallery from "../Components/home/productGallery/ProductGallery";
+import DiscountSmartphone from "../Components/home/smartphones/discountSmartphone/DiscountSmartphone";
+import MoreSmartphone from "../Components/home/smartphones/moreSmartphone/MoreSmartphone";
+import Smartphone from "../Components/home/smartphones/Smartphone";
 
 const HomePage = () => {
   return (

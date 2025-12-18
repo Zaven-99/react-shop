@@ -1,5 +1,6 @@
 import { useProductDetails } from "../../bll/useProductDetails";
 
+import ProductContentBlock from "./productContentBlock/ProductContentBlock";
 import ProductImagesBlock from "./productImagesBlock/ProductImagesBlock";
 import Error from "../ui/error/Error";
 import Loading from "../ui/loading/Loading";
@@ -8,7 +9,6 @@ import Rating from "./rating/Rating";
 import Review from "./Review/Review";
 
 import styles from "./productDetails.module.scss";
-import ProductContentBlock from "./productContentBlock/ProductContentBlock";
 
 const ProductDetails = () => {
   const {

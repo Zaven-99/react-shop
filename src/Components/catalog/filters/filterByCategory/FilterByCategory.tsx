@@ -1,6 +1,7 @@
-import styles from "./filterByCategory.module.scss";
 import type { Category, FiltersVisibility } from "../../../../dal/types";
+
 import arrowDown from "../../../../assets/icons/arrow-down.svg";
+import styles from "./filterByCategory.module.scss";
 
 interface FilterByCategory {
   categories: Category[];

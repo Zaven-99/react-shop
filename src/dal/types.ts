@@ -16,11 +16,11 @@ export interface Products {
   id: number;
   title: string;
   thumbnail: string;
-  description: string;
+  description?: string;
   price: number;
   category: string;
   brand: string;
-  images: string[];
+  images?: string[];
   discountPercentage?: number;
   rating?: number;
   stock?: number;
@@ -32,8 +32,7 @@ export interface Products {
   returnPolicy?: string;
   minimumOrderQuantity?: string;
   tags?: string[];
-  weight: string;
-  quantity?: number;
+  weight?: string;
 }
 export interface SearchResponse {
   products: Products[];
