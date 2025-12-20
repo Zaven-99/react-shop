@@ -5,12 +5,13 @@ import styles from "./productList.module.scss";
 
 interface ProductList {
   filteredProducts: Products[];
+  loading: boolean;
 }
 
-const ProductList = ({ filteredProducts }: ProductList) => {
+const ProductList = ({ filteredProducts, loading }: ProductList) => {
   return (
     <div className={styles["product-list"]}>
-      <ProductItem filteredProducts={filteredProducts} />
+      <ProductItem loading={loading} filteredProducts={filteredProducts} />
     </div>
   );
 };

@@ -44,7 +44,7 @@ const Catalog = () => {
             categoryValue={categoryValue}
           />
           {filteredProducts.length === 0 && <>No results</>}
-          <ProductList filteredProducts={filteredProducts} />
+          <ProductList loading={loading} filteredProducts={filteredProducts} />
         </div>
       </div>
     </section>

@@ -34,7 +34,6 @@ const FilterByCategory = ({
       </div>
 
       <hr className={styles["filter-categories__divider"]} />
-
       <ul className={styles["filter-categories__list"]}>
         {filtersVisibility.category && (
           <>

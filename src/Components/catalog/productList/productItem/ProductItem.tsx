@@ -6,11 +6,14 @@ import styles from "./productItem.module.scss";
 import AddToCartControls from "../../../ui/addToCartControls/AddToCartControls";
 import FavoriteToggle from "../../../ui/favoriteToggle/FavoriteToggle";
 
+import Loading from "../../../../assets/icons/loading/loading.svg";
+
 interface ProductList {
   filteredProducts: Products[];
+  loading: boolean;
 }
 
-const ProductItem = React.memo(({ filteredProducts }: ProductList) => {
+const ProductItem = React.memo(({ filteredProducts, loading }: ProductList) => {
   return (
     <>
       {filteredProducts.map((item) => (
@@ -18,7 +21,7 @@ const ProductItem = React.memo(({ filteredProducts }: ProductList) => {
           <FavoriteToggle item={item} favoriteComponent={false} />
           <img
             className={styles["product-img"]}
-            src={item.thumbnail}
+            src={loading ? Loading : item.thumbnail || Loading}
             alt={item.title}
           />
           <div className={styles["product-content"]}>

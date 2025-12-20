@@ -2,6 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Products } from "../dal/types";
 
+const loadFavorites = (): favoriteProducts[] => {
+  try {
+    const data = localStorage.getItem("favorites");
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveFavorites = (items: favoriteProducts[]) => {
+  localStorage.setItem("favorites", JSON.stringify(items));
+};
+
 interface favoriteProducts extends Products {
   isFavorite: boolean;
   quantity: number;
@@ -12,7 +25,7 @@ interface favoriteState {
 }
 
 const initialState: favoriteState = {
-  items: [],
+  items: loadFavorites(),
 };
 
 export const favoriteSlice = createSlice({
@@ -32,9 +45,12 @@ export const favoriteSlice = createSlice({
           quantity: 1,
         });
       }
+
+      saveFavorites(state.items);
     },
     removeFromFavorite: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
+      saveFavorites(state.items);
     },
   },
 });
