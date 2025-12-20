@@ -24,7 +24,8 @@ const ProductContentBlock = ({ productDetails }: ProductContentBlock) => {
       <div className={styles["btn-block"]}>
         <FavoriteToggle item={productDetails} favoriteComponent={true} />
         <AddToCartControls
-          className={styles["add-to__cart"]}
+          incrementDecrementStyle={styles["incrementDecrement-btn"]}
+          addToCartBtnStyle={styles["add-to__cart"]}
           item={productDetails}
         />
       </div>

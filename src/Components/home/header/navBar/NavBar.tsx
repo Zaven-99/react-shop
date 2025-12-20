@@ -8,7 +8,8 @@ import user from "../../../../assets/icons/user.svg";
 import styles from "./navBar.module.scss";
 
 const NavBar = () => {
-  const { totalQuantityCart, totalQuantityFavorite } = useNavbar();
+  const { totalQuantityCart, totalQuantityFavorite, cartItems, favoriteItems } =
+    useNavbar();
   return (
     <div className={styles["navBar-container"]}>
       <ul className={styles.links}>
@@ -34,9 +35,13 @@ const NavBar = () => {
               alt="favorites"
             />
           </Link>
-          <span className={styles["total-quantity__favorite"]}>
-            {totalQuantityFavorite}
-          </span>
+          {favoriteItems.length > 0 ? (
+            <span className={styles["total-quantity__favorite"]}>
+              {totalQuantityFavorite}
+            </span>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className={styles.cart}>
@@ -47,9 +52,13 @@ const NavBar = () => {
               alt="cart"
             />
           </Link>
-          <span className={styles["total-quantity__cart"]}>
-            {totalQuantityCart}
-          </span>
+          {cartItems.length > 0 ? (
+            <span className={styles["total-quantity__cart"]}>
+              {totalQuantityCart}
+            </span>
+          ) : (
+            ""
+          )}
         </div>
 
         <Link to="#">

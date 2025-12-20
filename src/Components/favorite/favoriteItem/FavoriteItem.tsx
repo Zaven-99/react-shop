@@ -10,6 +10,7 @@ const FavoriteItem = () => {
 
   return (
     <div className={styles["favorite-items__block"]}>
+      <h2>Favorites</h2>
       {items.length > 0 ? (
         <ul className={styles["favorite-items"]}>
           {items.map((item) => (

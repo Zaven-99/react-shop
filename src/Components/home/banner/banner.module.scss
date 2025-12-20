@@ -1,61 +1,61 @@
-.banner-inner{
-	width: 100%;
-	background: linear-gradient(95deg, #211c24 0%, #211c24 100%);
-	min-height: 632px;
-	display: flex;
-	padding: 0 160px;
-	.banner-content{
-		padding-top: 188px;
-		.banner-title{
-			font-weight: 600;
-			font-size: 25px;
-			line-height: 128%;
-			color: var(--main-white);
-			opacity: .4;
-		}
-		.banner-subtitle{
-			font-weight: 100;
-			font-size: 96px;
-			line-height: 75%;
-			letter-spacing: -0.01em;
-			color: var(--main-white);
-			margin-top: 24px;
-			span{
-				font-weight: 600;
-			}
-		}
-		.banner-description{
-			font-weight: 500;
-			font-size: 18px;
-			line-height: 133%;
-			color: #909090;
-			margin-top: 24px;
-		}
-		.btn{
-			font-weight: 500;
-			font-size: 16px;
-			line-height: 150%;
-			text-align: center;
-			color: var(--main-white);
-			border: 1px solid var(--main-white);
-			border-radius: 6px;
-			padding: 16px 56px;
-			min-width: 191px;
-			min-height: 56px;
-			margin-top: 24px;
-			&:hover{
-				background-color:var(--main-white);
-				color:var(--main-black);
-				transition:0.3s;
-			}
-		}
-	}
-	.banner-img{
-		margin-left: auto;
-		.banner-image{
-			min-width: 406px;
-			min-height: 632px;
-			object-fit: cover;
-		}
-	}	
+.banner-inner {
+  width: 100%;
+  background: linear-gradient(95deg, #211c24 0%, #211c24 100%);
+  min-height: 632px;
+  display: flex;
+  padding: 0 160px;
+  .banner-content {
+    padding-top: 188px;
+    .banner-title {
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 128%;
+      color: var(--main-white);
+      opacity: 0.4;
+    }
+    .banner-subtitle {
+      font-weight: 100;
+      font-size: 96px;
+      line-height: 75%;
+      letter-spacing: -0.01em;
+      color: var(--main-white);
+      margin-top: 24px;
+      span {
+        font-weight: 600;
+      }
+    }
+    .banner-description {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 133%;
+      color: #909090;
+      margin-top: 24px;
+    }
+    .btn {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: center;
+      color: var(--main-white);
+      border: 1px solid var(--main-white);
+      border-radius: 6px;
+      padding: 16px 56px;
+      min-width: 191px;
+      min-height: 56px;
+      margin-top: 24px;
+      &:hover {
+        background-color: var(--main-white);
+        color: var(--main-black);
+        transition: 0.3s;
+      }
+    }
+  }
+  .banner-img {
+    margin-left: auto;
+    .banner-image {
+      min-width: 406px;
+      min-height: 632px;
+      object-fit: cover;
+    }
+  }
 }

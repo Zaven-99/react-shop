@@ -1,0 +1,33 @@
+.order-count {
+  width: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  padding: 56px 64px;
+  width: 536px;
+  .order-count__title {
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 80%;
+    color: #111;
+  }
+  .order-count__value-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .order-count__label {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.03em;
+      color: var(--main-black);
+    }
+    .order-count__value {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.03em;
+      color: var(--main-black);
+    }
+  }
+}

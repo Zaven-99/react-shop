@@ -4,8 +4,9 @@
     margin-top: 30px;
     .wrapper {
       display: grid;
-      grid-template-columns: 80px 1fr 140px 230px 40px;
+      grid-template-columns: 80px 1fr 140px 110px 40px;
       align-items: center;
+      gap: 16px;
 
       .thumbnail {
         width: 90px;
@@ -35,7 +36,7 @@
         color: var(--main-black);
       }
       .delete-product {
-        width: 30px;
+        width: 20px;
         cursor: pointer;
         transition: 0.5s;
         &:active {

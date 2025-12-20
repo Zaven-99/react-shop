@@ -30,6 +30,20 @@
   position: absolute;
   bottom: 0;
 
+  .incrementDecrement-btn {
+    display: block;
+    border-radius: 8px;
+    padding: 12px 32px;
+    width: 100%;
+    background: var(--main-black);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 171%;
+    text-align: center;
+    color: var(--main-white);
+    cursor: pointer;
+  }
+
   .add-to__cart {
     font-weight: 500;
     font-size: 16px;

@@ -10,10 +10,15 @@ import styles from "./addCartControl.module.scss";
 
 interface AddToCartControls {
   item: Products;
-  className?: string;
+  addToCartBtnStyle?: string;
+  incrementDecrementStyle?: string;
 }
 
-const AddToCartControls = ({ item, className }: AddToCartControls) => {
+const AddToCartControls = ({
+  item,
+  addToCartBtnStyle,
+  incrementDecrementStyle,
+}: AddToCartControls) => {
   const { count, cartItems, dispatch } = useProductItem();
 
   return (
@@ -23,7 +28,11 @@ const AddToCartControls = ({ item, className }: AddToCartControls) => {
           <Button
             label="-"
             type="button"
-            className={styles["decrement-btn"]}
+            className={
+              !incrementDecrementStyle
+                ? styles["decrement-btn"]
+                : incrementDecrementStyle
+            }
             onClick={() => dispatch(decrementQuantity(item.id))}
           />
           <span className={styles.quantity}>{count(item.id)}</span>
@@ -31,14 +40,20 @@ const AddToCartControls = ({ item, className }: AddToCartControls) => {
             onClick={() => dispatch(incrementQuantity(item.id))}
             label="+"
             type="button"
-            className={styles["increment-btn"]}
+            className={
+              !incrementDecrementStyle
+                ? styles["increment-btn"]
+                : incrementDecrementStyle
+            }
           />
         </div>
       ) : (
         <Button
           onClick={() => dispatch(addToCart(item))}
           type="button"
-          className={!className ? styles["add-to__cart"] : className}
+          className={
+            !addToCartBtnStyle ? styles["add-to__cart"] : addToCartBtnStyle
+          }
           label="Buy Now"
         />
       )}

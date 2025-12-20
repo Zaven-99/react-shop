@@ -1,14 +1,12 @@
 .cart-container {
-  padding: 0 160px;
+  padding: 112px 160px;
   min-height: 100vh;
+
   .cart-inner {
     display: flex;
     justify-content: space-between;
+    gap: 54px;
     animation: fadeIn 0.4s ease forwards;
-    .order-summary {
-      width: 20%;
-      text-align: end;
-    }
   }
 }
 //animation

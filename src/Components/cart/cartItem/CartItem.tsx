@@ -1,16 +1,17 @@
 import { removeFromCart } from "../../../store/cartSlice";
 import { useCart } from "../../../bll/useCart";
 
+import AddToCartControls from "../../ui/addToCartControls/AddToCartControls";
 import reset from "../../../assets/icons/close.svg";
 
 import styles from "./cartItem.module.scss";
-import AddToCartControls from "../../ui/addToCartControls/AddToCartControls";
 
 const CartItem = () => {
   const { dispatch, items } = useCart();
 
   return (
     <div className={styles["cart-items__block"]}>
+      <h2>Shopping cart</h2>
       {items.length > 0 ? (
         <ul className={styles["cart-items"]}>
           {items.map((item) => (

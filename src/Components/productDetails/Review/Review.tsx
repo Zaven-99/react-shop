@@ -11,6 +11,7 @@ interface Review {
 const Review = ({ productDetails }: Review) => {
   const { formatDate, rating } = useReview();
   return (
+    // TODO button more
     <div className={styles["review-container"]}>
       <div className={styles["review-list"]}>
         {productDetails.reviews?.map((item, index) => (

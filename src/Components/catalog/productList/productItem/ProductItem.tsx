@@ -26,8 +26,8 @@ const ProductItem = React.memo(({ filteredProducts, loading }: ProductList) => {
           />
           <div className={styles["product-content"]}>
             <p className={styles["product-title"]}>
-              {item.title.length > 40
-                ? item.title.slice(0, 40) + "..."
+              {item.title.length > 20
+                ? item.title.slice(0, 20) + "..."
                 : item.title}
             </p>
             <h2 className={styles["product-price"]}>${item.price}</h2>
