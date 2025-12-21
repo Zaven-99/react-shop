@@ -1,8 +1,14 @@
-import styles from "./filters.module.scss";
 import Loading from "../../ui/loading/Loading";
-import type { Category, FiltersVisibility } from "../../../dal/types";
+import {
+  ErrorType,
+  type Category,
+  type FiltersVisibility,
+} from "../../../dal/types";
 import InputFilter from "./inputFilter.tsx/InputFilter";
 import FilterByCategory from "./filterByCategory/FilterByCategory";
+import Error from "../../ui/error/Error";
+
+import styles from "./filters.module.scss";
 
 interface FiltersProps {
   loading: boolean;
@@ -13,6 +19,7 @@ interface FiltersProps {
   toggleFilter: (filterName: keyof FiltersVisibility) => void;
   toggleCategoryName: (e: React.ChangeEvent<HTMLInputElement>) => void;
   categoryValue: string[];
+  error: string | null;
 }
 
 const Filters = ({
@@ -24,21 +31,31 @@ const Filters = ({
   categories,
   toggleCategoryName,
   categoryValue,
+  error,
 }: FiltersProps) => {
   if (loading) return <Loading />;
 
   return (
     <div className={styles["filter-block"]}>
       {/* Поисковая строка */}
-      <InputFilter value={inputValue} setValue={setInputValue} />
+      {error === ErrorType.INVALID_SEARCH ? (
+        <Error label={error} />
+      ) : (
+        <InputFilter value={inputValue} setValue={setInputValue} />
+      )}
+
       {/* Фильтр по категориям */}
-      <FilterByCategory
-        toggleFilter={toggleFilter}
-        filtersVisibility={filtersVisibility}
-        categories={categories}
-        toggleCategoryName={toggleCategoryName}
-        categoryValue={categoryValue}
-      />
+      {error === ErrorType.INVALID_CATEGORY ? (
+        <Error label={error} />
+      ) : (
+        <FilterByCategory
+          toggleFilter={toggleFilter}
+          filtersVisibility={filtersVisibility}
+          categories={categories}
+          toggleCategoryName={toggleCategoryName}
+          categoryValue={categoryValue}
+        />
+      )}
     </div>
   );
 };

@@ -61,7 +61,7 @@ const NavBar = () => {
           )}
         </div>
 
-        <Link to="#">
+        <Link to="/auth">
           <img className={styles["action-icons__item"]} src={user} alt="user" />
         </Link>
       </div>

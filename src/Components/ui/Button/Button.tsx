@@ -3,10 +3,16 @@ interface Button {
   type: "submit" | "reset" | "button" | undefined;
   label: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
-const Button = ({ className, type, label, onClick }: Button) => {
+const Button = ({ className, type, label, onClick, disabled }: Button) => {
   return (
-    <button onClick={onClick} type={type} className={className}>
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+      className={className}
+    >
       {label}
     </button>
   );

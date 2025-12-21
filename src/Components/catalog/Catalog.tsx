@@ -1,7 +1,8 @@
 import { useFilter } from "../../bll/useFilter";
+import { ErrorType } from "../../dal/types";
+import Error from "../ui/error/Error";
 
 import Loading from "../ui/loading/Loading";
-import Error from "../ui/error/Error";
 import ProductList from "./productList/ProductList";
 import Filters from "./filters/Filters";
 
@@ -21,7 +22,6 @@ const Catalog = () => {
     categoryValue,
   } = useFilter(1000, true);
   if (loading) return <Loading />;
-  if (error) return <Error label={error} />;
 
   return (
     <section>
@@ -42,9 +42,19 @@ const Catalog = () => {
             toggleFilter={toggleFilter}
             toggleCategoryName={toggleCategoryName}
             categoryValue={categoryValue}
+            error={error}
           />
-          {filteredProducts.length === 0 && <>No results</>}
-          <ProductList loading={loading} filteredProducts={filteredProducts} />
+          {!error && !loading && filteredProducts.length === 0 && (
+            <>No results</>
+          )}
+          {error === ErrorType.INVALID_PRODUCTS ? (
+            <Error label={error} />
+          ) : (
+            <ProductList
+              loading={loading}
+              filteredProducts={filteredProducts}
+            />
+          )}
         </div>
       </div>
     </section>

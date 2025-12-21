@@ -5,6 +5,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CatalogPage from "./pages/CatalogPage";
 import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="catalog" element={<CatalogPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="favorite" element={<FavoritePage />} />
+      <Route path="auth" element={<AuthPage />} />
     </Routes>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import type { Products } from "../dal/types";
+import { ErrorType, type Products } from "../dal/types";
 import { getProductById } from "../dal/api";
 
 export function useProductDetails() {
@@ -8,7 +8,7 @@ export function useProductDetails() {
   const [productDetails, setProductDetails] = useState<Products | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorType>(ErrorType.NONE);
 
   const handleMouseEnter = useCallback(
     (img: string) => setActiveImage(img),
@@ -23,11 +23,12 @@ export function useProductDetails() {
     if (Number.isNaN(productId)) return;
 
     const fetchProductById = async () => {
+      setLoading(true);
       try {
         const productById = await getProductById(productId);
         setProductDetails(productById);
       } catch {
-        setError("Не удалось загрузить товар!");
+        setError(ErrorType.INVALID_DATA);
       } finally {
         setLoading(false);
       }

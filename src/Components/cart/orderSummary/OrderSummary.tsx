@@ -18,7 +18,7 @@ const OrderSummary = () => {
         type="text"
         className={`${styles["promocode-input"]} ${styles["code-input"]}`}
         value=""
-        onChange=""
+        onChange="#"
       />
       <p className={`${styles["card-number"]} ${styles["code-title"]}`}>
         Your bonus card number
@@ -27,7 +27,7 @@ const OrderSummary = () => {
         type="text"
         className={`${styles["card-number__input"]} ${styles["code-input"]}`}
         value=""
-        onChange=""
+        onChange="#"
       />
       <div className={styles.subtotal}>
         <div className={styles["subtotal-item"]}>
@@ -56,7 +56,7 @@ const OrderSummary = () => {
             {items.length === 0
               ? "$0"
               : "$" +
-                Math.floor(
+                Math.round(
                   totalPrice + EstimatedTax + EstimatedShippingHandling
                 )}
           </span>

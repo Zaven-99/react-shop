@@ -13,7 +13,7 @@ import styles from "./header.module.scss";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { inputValue, setInputValue, filteredProducts, hasSearched } =
+  const { inputValue, setInputValue, filteredProducts, hasSearched, loading } =
     useFilter(1000, false);
 
   return (
@@ -49,10 +49,20 @@ const Header = () => {
               />
             </div>
 
-            {hasSearched && filteredProducts.length === 0 && (
-              <div className={styles["search-result"]}>
-                <p>No results</p>
+            {hasSearched && !loading && filteredProducts.length === 0 ? (
+              <div
+                className={`${styles["search-result"]} ${styles["popup-result"]}`}
+              >
+                <p className={styles["no-result"]}>No results</p>
               </div>
+            ) : hasSearched && loading ? (
+              <div
+                className={`${styles["search-result"]} ${styles["popup-result"]}`}
+              >
+                <p className={styles["loading"]}>loading...</p>
+              </div>
+            ) : (
+              ""
             )}
 
             {filteredProducts.length > 0 && (

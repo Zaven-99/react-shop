@@ -5,7 +5,7 @@ import {
   getFilteredProduct,
   getProductByCategoryName,
 } from "../dal/api";
-import type { Category, Products } from "../dal/types";
+import { ErrorType, type Category, type Products } from "../dal/types";
 
 export function useFilter(delay = 1000, loadAllOnEmpty = false) {
   const [allCatProducts, setAllCatProducts] = useState<Products[]>([]);
@@ -14,7 +14,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
   const [inputValue, setInputValue] = useState("");
   const [categoryValue, setCategoryValue] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorType>(ErrorType.NONE);
   const [hasSearched, setHasSearched] = useState(false);
   const [filtersVisibility, setFiltersVisibility] = useState({
     category: false,
@@ -61,7 +61,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
             setAllCatProducts(allProducts);
             setFilteredProducts(allProducts);
           } catch {
-            setError("Ошибка при загрузке всех товаров");
+            setError(ErrorType.INVALID_PRODUCTS);
           } finally {
             setLoading(false);
           }
@@ -82,7 +82,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
         setAllCatProducts(products);
         setFilteredProducts(products);
       } catch {
-        setError("Не удалось получить товары по категориям");
+        setError(ErrorType.INVALID_PRODUCTS_BY_CATEGORY);
       } finally {
         setLoading(false);
       }
@@ -100,7 +100,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
         );
         setCategories(filteredCategories);
       } catch {
-        setError("Ошибка при загрузке категорий");
+        setError(ErrorType.INVALID_CATEGORY);
       } finally {
         setLoading(false);
       }
@@ -134,7 +134,7 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
             const products = await getFilteredProduct(text);
             setFilteredProducts(products);
           } catch {
-            setError("Ошибка при поиске");
+            setError(ErrorType.INVALID_SEARCH);
           } finally {
             setLoading(false);
           }

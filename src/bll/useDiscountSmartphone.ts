@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getDiscountProducts } from "../dal/api";
-import type { Products } from "../dal/types";
+import { ErrorType, type Products } from "../dal/types";
 
 export function useDiscountSmartphone() {
   const [discountSmartphone, setDiscountSmartphone] = useState<Products[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorType>(ErrorType.NONE);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchDiscountSmartphone = async () => {
@@ -13,7 +13,7 @@ export function useDiscountSmartphone() {
         const discountSmartphone = await getDiscountProducts();
         setDiscountSmartphone(discountSmartphone.products);
       } catch {
-        setError("Не удалось загрузить данные");
+        setError(ErrorType.INVALID_PRODUCTS);
       } finally {
         setLoading(false);
       }

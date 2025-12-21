@@ -1,4 +1,5 @@
 import { useProductDetails } from "../../bll/useProductDetails";
+import { ErrorType } from "../../dal/types";
 
 import ProductContentBlock from "./productContentBlock/ProductContentBlock";
 import ProductImagesBlock from "./productImagesBlock/ProductImagesBlock";
@@ -19,24 +20,29 @@ const ProductDetails = () => {
     handleMouseEnter,
     handleMouseLeave,
   } = useProductDetails();
-  if (loading || !productDetails) return <Loading />;
-  if (error) return <Error label={error} />;
+  if (loading) return <Loading />;
 
   return (
     <section>
       <div className={styles["product-details__container"]}>
-        <div className={styles["product-details__inner"]}>
-          <ProductImagesBlock
-            handleMouseEnter={handleMouseEnter}
-            handleMouseLeave={handleMouseLeave}
-            productDetails={productDetails}
-            activeImage={activeImage}
-          />
-          <ProductContentBlock productDetails={productDetails} />
-        </div>
-        <MoreDetails productDetails={productDetails} />
-        <Rating productDetails={productDetails} />
-        <Review productDetails={productDetails} />
+        {error === ErrorType.INVALID_DATA || !productDetails ? (
+          <Error label={error} />
+        ) : (
+          <>
+            <div className={styles["product-details__inner"]}>
+              <ProductImagesBlock
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                productDetails={productDetails}
+                activeImage={activeImage}
+              />
+              <ProductContentBlock productDetails={productDetails} />
+            </div>
+            <MoreDetails productDetails={productDetails} />
+            <Rating productDetails={productDetails} />
+            <Review productDetails={productDetails} />
+          </>
+        )}
       </div>
     </section>
   );

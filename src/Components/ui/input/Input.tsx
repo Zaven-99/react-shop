@@ -3,8 +3,9 @@ interface Input {
   type: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
 }
-const Input = ({ className, type, value, onChange }: Input) => {
+const Input = ({ className, type, value, onChange, placeholder }: Input) => {
   return (
     <div>
       <input
@@ -12,7 +13,7 @@ const Input = ({ className, type, value, onChange }: Input) => {
         value={value}
         className={className}
         type={type}
-        placeholder="Search "
+        placeholder={placeholder}
       />
     </div>
   );

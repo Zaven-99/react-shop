@@ -1,4 +1,5 @@
 import { useSmartphone } from "../../../bll/useSmartphone";
+import { ErrorType } from "../../../dal/types";
 
 import SmartphoneItem from "./smartphoneItem/SmartphoneItem";
 import Error from "../../ui/error/Error";
@@ -9,7 +10,6 @@ import styles from "./smartphone.module.scss";
 const Smartphone = () => {
   const { smartphone, error, loading } = useSmartphone();
 
-  if (error) return <Error label={error} />;
   if (loading) return <Loading />;
 
   return (
@@ -17,17 +17,23 @@ const Smartphone = () => {
       <div className={styles["products-container"]}>
         <div className={styles["products-inner"]}>
           <div className={styles["grid-container"]}>
-            {smartphone?.map((item) => (
-              <SmartphoneItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                price={item.price}
-                thumbnail={item.thumbnail}
-                category={item.category}
-                brand={item.brand}
-              />
-            ))}
+            {error === ErrorType.INVALID_PRODUCTS ? (
+              <Error label={error} />
+            ) : (
+              <>
+                {smartphone?.map((item) => (
+                  <SmartphoneItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    price={item.price}
+                    thumbnail={item.thumbnail}
+                    category={item.category}
+                    brand={item.brand}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
