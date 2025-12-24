@@ -40,6 +40,7 @@ const Header = () => {
                   inputValue.trim() ? styles.open : ""
                 }`}
                 type="text"
+                placeholder="Search"
               />
               <img
                 onClick={() => setInputValue("")}

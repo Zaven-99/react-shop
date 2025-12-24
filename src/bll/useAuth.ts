@@ -1,6 +1,6 @@
-import { useState, type ChangeEvent } from "react";
-
-import { ErrorType } from "../dal/types";
+import { useState, useEffect, type ChangeEvent } from "react";
+import { ErrorType, SuccessType } from "../dal/types";
+import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
   const [userNameValue, setUserNameValue] = useState("");
@@ -10,131 +10,208 @@ export const useAuth = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
+  const [isSignInForm, setIsSignInForm] = useState(false);
 
-  const [error, setError] = useState<ErrorType>(ErrorType.NONE);
-  const [isLogin, setIsLogin] = useState(false);
+  const [errors, setErrors] = useState<{
+    userName?: ErrorType;
+    password?: ErrorType;
+    confirmPassword?: ErrorType;
+  }>({});
+
+  const [success, setSuccess] = useState<{
+    userName?: SuccessType;
+    password?: SuccessType;
+  }>({});
+
+  const navigate = useNavigate();
 
   const getUserNameValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserNameValue(e.target.value);
+    const value = e.target.value;
+    setUserNameValue(value);
+
+    const trimmed = value.trim();
+    const isValid = /^[A-Za-z]{5,}$/.test(trimmed);
+
+    setErrors((prev) => ({
+      ...prev,
+      userName: !trimmed
+        ? ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY
+        : !isValid
+        ? ErrorType.IS_USER_NAME_IS_CORRECT
+        : undefined,
+    }));
+    setSuccess((prev) => ({
+      ...prev,
+      userName: isValid ? SuccessType.IS_USER_NAME_IS_CORRECT : undefined,
+    }));
   };
 
   const getPasswordValue = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPasswordValue(value);
 
-    const trimmedPassword = value.trim();
+    const trimmed = value.trim();
+    const hasUpper = /[A-Z]/.test(trimmed);
+    const hasLower = /[a-z]/.test(trimmed);
+    const hasNum = /\d/.test(trimmed);
+    const hasSpecial = /[!@#$%^&.*()_+?><~=-]/.test(trimmed);
 
-    const hasUpperCase = /[A-Z]/.test(trimmedPassword);
-    const hasLowerCase = /[a-z]/.test(trimmedPassword);
-    const hasNumber = /\d/.test(trimmedPassword);
-    const hasSpecialSymbol = /[!@#$%^&.*()_+?><~=-]/.test(trimmedPassword);
+    setErrors((prev) => ({
+      ...prev,
+      password: !trimmed
+        ? ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY
+        : !(hasUpper && hasLower && hasNum && hasSpecial)
+        ? ErrorType.INVALID_PASSWORD
+        : undefined,
+      confirmPassword:
+        confirmPasswordValue && trimmed !== confirmPasswordValue
+          ? ErrorType.PASSWORDS_DO_NOT_MATCH
+          : undefined,
+    }));
 
-    if (trimmedPassword.length === 0) {
-      setError(ErrorType.NONE);
-    } else if (hasUpperCase && hasLowerCase && hasNumber && hasSpecialSymbol) {
-      setError(ErrorType.NONE);
-    } else {
-      setError(ErrorType.INVALID_PASSWORD);
-    }
+    setSuccess((prev) => ({
+      ...prev,
+      password:
+        hasUpper && hasLower && hasNum && hasSpecial
+          ? SuccessType.IS_PASSWORD_CORRECT
+          : undefined,
+    }));
 
-    setIsPasswordMatch(value === confirmPasswordValue && value.length > 0);
+    setIsPasswordMatch(trimmed === confirmPasswordValue && trimmed.length > 0);
   };
 
   const getConfirmPasswordValue = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setConfirmPasswordValue(value);
 
-    if (value === passwordValue && value.length === passwordValue.length) {
-      setIsPasswordMatch(true);
-    } else {
-      setIsPasswordMatch(false);
-    }
+    setIsPasswordMatch(value === passwordValue && value.length > 0);
+    setErrors((prev) => ({
+      ...prev,
+      confirmPassword:
+        value && value !== passwordValue
+          ? ErrorType.PASSWORDS_DO_NOT_MATCH
+          : undefined,
+    }));
   };
 
   const signUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!userNameValue.trim() || !passwordValue.trim()) {
-      setError(ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY);
+    const newErrors: typeof errors = {};
+
+    const trimmedUserName = userNameValue.trim();
+    const trimmedPassword = passwordValue.trim();
+    const trimmedConfirm = confirmPasswordValue.trim();
+
+    if (!trimmedUserName)
+      newErrors.userName = ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY;
+    else if (!/^[A-Za-z]{5,}$/.test(trimmedUserName))
+      newErrors.userName = ErrorType.IS_USER_NAME_IS_CORRECT;
+
+    const hasUpper = /[A-Z]/.test(trimmedPassword);
+    const hasLower = /[a-z]/.test(trimmedPassword);
+    const hasNum = /\d/.test(trimmedPassword);
+    const hasSpecial = /[!@#$%^&.*()_+?><~=-]/.test(trimmedPassword);
+
+    if (!trimmedPassword)
+      newErrors.password = ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY;
+    else if (!(hasUpper && hasLower && hasNum && hasSpecial))
+      newErrors.password = ErrorType.INVALID_PASSWORD;
+
+    if (!trimmedConfirm)
+      newErrors.confirmPassword = ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY;
+    else if (trimmedPassword !== trimmedConfirm)
+      newErrors.confirmPassword = ErrorType.PASSWORDS_DO_NOT_MATCH;
+
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
       return;
     }
 
-    // 1. Получаем пользователей из localStorage
     const savedUsers = localStorage.getItem("users");
     const users: { username: string; password: string }[] = savedUsers
       ? JSON.parse(savedUsers)
       : [];
 
-    const exists = users.some((user) => user.username === userNameValue);
-
-    if (exists) {
-      setError(ErrorType.IS_USER_NAME_ALREADY_EXIST);
+    if (users.some((u) => u.username === trimmedUserName)) {
+      setErrors({ userName: ErrorType.IS_USER_NAME_ALREADY_EXIST });
       return;
     }
 
-    // 2. Новый пользователь
-    const newUser = {
-      username: userNameValue,
-      password: passwordValue,
-    };
-
-    // 3. Добавляем
+    const newUser = { username: trimmedUserName, password: trimmedPassword };
     users.push(newUser);
-
-    // 4. Сохраняем обратно
     localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
 
-    alert("Регистрация успешна");
+    navigate("/");
     setUserNameValue("");
     setPasswordValue("");
     setConfirmPasswordValue("");
+    setErrors({});
+    setSuccess({});
   };
 
   const signIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!userNameValue.trim() || !passwordValue.trim()) {
-      setError(ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY);
+    const trimmedUserName = userNameValue.trim();
+    const trimmedPassword = passwordValue.trim();
+
+    if (!trimmedUserName || !trimmedPassword) {
+      setErrors({
+        userName: !trimmedUserName
+          ? ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY
+          : undefined,
+        password: !trimmedPassword
+          ? ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY
+          : undefined,
+      });
       return;
     }
+
     const savedUsers = localStorage.getItem("users");
     const users: { username: string; password: string }[] = savedUsers
       ? JSON.parse(savedUsers)
       : [];
 
     const userExists = users.find(
-      (user) =>
-        user.username === userNameValue.trim() &&
-        user.password === passwordValue.trim()
+      (u) => u.username === trimmedUserName && u.password === trimmedPassword
     );
 
     if (!userExists) {
-      setError(ErrorType.IS_PASSWORD_OR_LOGIN_CORRECT);
+      setErrors({ userName: ErrorType.IS_PASSWORD_OR_LOGIN_CORRECT });
       return;
-    } else {
-      localStorage.setItem("currentUser", JSON.stringify(userExists));
-      alert("Успешный вход");
-      setUserNameValue("");
-      setPasswordValue("");
     }
+
+    localStorage.setItem("currentUser", JSON.stringify(userExists));
+    navigate("/");
+    setUserNameValue("");
+    setPasswordValue("");
+    setErrors({});
+    setSuccess({});
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return {
-    isLogin,
-    error,
+    isSignInForm,
+    errors,
+    success,
     userNameValue,
     getUserNameValue,
     passwordValue,
     getPasswordValue,
-    setIsLogin,
-    signUp,
-    signIn,
-    isPasswordMatch,
-    getConfirmPasswordValue,
     confirmPasswordValue,
+    getConfirmPasswordValue,
+    isPasswordMatch,
     isPasswordVisible,
     setIsPasswordVisible,
     isConfirmPasswordVisible,
     setIsConfirmPasswordVisible,
+    setIsSignInForm,
+    signUp,
+    signIn,
   };
 };

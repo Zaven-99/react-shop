@@ -54,15 +54,23 @@ export interface FiltersVisibility {
 
 export enum ErrorType {
   NONE = "NONE",
-  INVALID_SEARCH = "Ошибка при поиске!",
-  INVALID_PRODUCTS = "Ошибка при загрузке всех товаров!",
-  INVALID_PRODUCTS_BY_CATEGORY = "Не удалось получить товары по категориям!",
-  INVALID_CATEGORY = "Не удалось загрузить категории!",
-  INVALID_DATA = "Не удалось загрузить данные!",
-  INVALID_PASSWORD = "Пароль должен содержать заглавную, строчную букву, цифру и спецсимвол",
-  LOGIN_OR_PASSWORD_INPUT_IS_EMPTY = "Заполните поля",
-  IS_USER_NAME_ALREADY_EXIST = "Пользователь с таким логином уже существует",
-  IS_PASSWORD_OR_LOGIN_CORRECT = "Не правильный логин или пароль",
+  INVALID_SEARCH = "Error during search!",
+  INVALID_PRODUCTS = "Error loading all products!",
+  INVALID_PRODUCTS_BY_CATEGORY = "Failed to get products by category!",
+  INVALID_CATEGORY = "Failed to load categories!",
+  INVALID_DATA = "Failed to load data!",
+  INVALID_PASSWORD = "Password must contain an uppercase letter, a lowercase letter, a number, and a special character",
+  LOGIN_OR_PASSWORD_INPUT_IS_EMPTY = "Please fill in the fields",
+  IS_USER_NAME_ALREADY_EXIST = "A user with this username already exists",
+  IS_PASSWORD_OR_LOGIN_CORRECT = "Incorrect username or password",
+  IS_USER_NAME_IS_CORRECT = "Username must be at least 5 letters and use only English letters",
+  PASSWORDS_DO_NOT_MATCH = "Passwords do not match",
+}
+
+export enum SuccessType {
+  NONE = "NONE",
+  IS_PASSWORD_CORRECT = "Password is correct",
+  IS_USER_NAME_IS_CORRECT = "User name is correct",
 }
 
 export interface User {

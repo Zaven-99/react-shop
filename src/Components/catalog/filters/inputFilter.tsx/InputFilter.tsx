@@ -22,6 +22,7 @@ const InputFilter = ({ value, setValue }: InputFilter) => {
         value={value}
         className={styles["filter-search__input"]}
         type="text"
+        placeholder="Search"
       />
       <img
         onClick={() => setValue("")}

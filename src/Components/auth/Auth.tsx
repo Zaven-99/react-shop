@@ -4,13 +4,13 @@ import { useAuth } from "../../bll/useAuth";
 import styles from "./auth.module.scss";
 const LoginForm = () => {
   const {
-    isLogin,
-    error,
+    isSignInForm,
+    errors,
     userNameValue,
     getUserNameValue,
     passwordValue,
     getPasswordValue,
-    setIsLogin,
+    setIsSignInForm,
     signUp,
     signIn,
     isPasswordMatch,
@@ -20,24 +20,28 @@ const LoginForm = () => {
     setIsPasswordVisible,
     isConfirmPasswordVisible,
     setIsConfirmPasswordVisible,
+    success,
   } = useAuth();
+
   return (
     <div className={styles["auth-container"]}>
-      {!isLogin ? (
+      {!isSignInForm ? (
         <SignIn
-          error={error}
+          success={success}
+          errors={errors}
           userNameValue={userNameValue}
           getUserNameValue={getUserNameValue}
           passwordValue={passwordValue}
           getPasswordValue={getPasswordValue}
-          setIsLogin={setIsLogin}
+          setIsSignInForm={setIsSignInForm}
           signIn={signIn}
           isPasswordVisible={isPasswordVisible}
           setIsPasswordVisible={setIsPasswordVisible}
         />
       ) : (
         <SignUp
-          error={error}
+          success={success}
+          errors={errors}
           userNameValue={userNameValue}
           getUserNameValue={getUserNameValue}
           passwordValue={passwordValue}
@@ -45,7 +49,7 @@ const LoginForm = () => {
           getConfirmPasswordValue={getConfirmPasswordValue}
           confirmPasswordValue={confirmPasswordValue}
           getPasswordValue={getPasswordValue}
-          setIsLogin={setIsLogin}
+          setIsSignInForm={setIsSignInForm}
           signUp={signUp}
           isPasswordVisible={isPasswordVisible}
           setIsPasswordVisible={setIsPasswordVisible}

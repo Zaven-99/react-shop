@@ -1,4 +1,5 @@
 .sign-in__container {
+  animation: fadeIn 0.4s ease forwards;
   .input-container {
     position: relative;
     width: 100%;
@@ -54,5 +55,16 @@
       text-decoration: underline;
       color: var(--main-black);
     }
+  }
+}
+//animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

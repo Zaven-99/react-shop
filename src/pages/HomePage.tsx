@@ -7,19 +7,24 @@ import ProductGallery from "../Components/home/productGallery/ProductGallery";
 import DiscountSmartphone from "../Components/home/smartphones/discountSmartphone/DiscountSmartphone";
 import MoreSmartphone from "../Components/home/smartphones/moreSmartphone/MoreSmartphone";
 import Smartphone from "../Components/home/smartphones/Smartphone";
+import Message from "../Components/ui/message/Message";
+import styles from "./homePage.module.scss";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className={styles["home-page"]}>
       <Header />
-      <Banner />
-      <ProductGallery />
-      <Categories />
-      <Smartphone />
-      <MoreSmartphone />
-      <DiscountSmartphone />
-      <BannerSecond />
-      <Footer />
+      <Message />
+      <div className={styles["home-page__inner"]}>
+        <Banner />
+        <ProductGallery />
+        <Categories />
+        <Smartphone />
+        <MoreSmartphone />
+        <DiscountSmartphone />
+        <BannerSecond />
+        <Footer />
+      </div>
     </div>
   );
 };

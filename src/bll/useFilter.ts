@@ -49,11 +49,9 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
     }
   }, [inputValue]);
 
-  // загрузка товаров при изменении выбранных категорий
   useEffect(() => {
     if (categoryValue.length === 0) {
       if (loadAllOnEmpty) {
-        // загружаем все товары только если loadAllOnEmpty = true
         (async () => {
           setLoading(true);
           try {
@@ -67,14 +65,12 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
           }
         })();
       } else {
-        // если loadAllOnEmpty = false — просто очищаем состояния
         setAllCatProducts([]);
         setFilteredProducts([]);
       }
       return;
     }
 
-    // если есть выбранные категории — загружаем товары по категориям
     (async () => {
       setLoading(true);
       try {
@@ -89,7 +85,6 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
     })();
   }, [categoryValue, loadAllOnEmpty]);
 
-  // загрузка списка категорий один раз
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -107,7 +102,6 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
     })();
   }, []);
 
-  // debounce‑поиск
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
@@ -115,19 +109,16 @@ export function useFilter(delay = 1000, loadAllOnEmpty = false) {
       const text = inputValue.trim().toLowerCase();
 
       if (!text) {
-        // если текст пуст — просто показать текущий массив
         setFilteredProducts(allCatProducts);
         return;
       }
 
       if (categoryValue.length > 0) {
-        // если есть категории — фильтруем их
         const searched = allCatProducts.filter((p) =>
           p.title.toLowerCase().includes(text)
         );
         setFilteredProducts(searched);
       } else {
-        // если категорий нет — поиск по API
         (async () => {
           setLoading(true);
           try {

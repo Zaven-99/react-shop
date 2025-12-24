@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store/store";
+import { useEffect } from "react";
 
 export function useCart() {
   const dispatch = useDispatch<AppDispatch>();
@@ -10,6 +11,13 @@ export function useCart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return {
     totalPrice,

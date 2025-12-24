@@ -1,10 +1,7 @@
-.auth-container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.home-page__inner {
   animation: fadeIn 0.4s ease forwards;
 }
+
 //animation
 @keyframes fadeIn {
   from {

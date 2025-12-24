@@ -35,7 +35,7 @@ export function useProductDetails() {
     };
 
     fetchProductById();
-    window.scrollTo({ top: 0, behavior: "auto" }); //!for to scroll top
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
   return {
