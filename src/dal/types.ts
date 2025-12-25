@@ -16,7 +16,7 @@ export interface Products {
   id: number;
   title: string;
   thumbnail: string;
-  description: string;
+  description?: string;
   price: number;
   category: string;
   brand: string;
@@ -61,16 +61,17 @@ export enum ErrorType {
   INVALID_DATA = "Failed to load data!",
   INVALID_PASSWORD = "Password must contain an uppercase letter, a lowercase letter, a number, and a special character",
   LOGIN_OR_PASSWORD_INPUT_IS_EMPTY = "Please fill in the fields",
-  IS_USER_NAME_ALREADY_EXIST = "A user with this username already exists",
-  IS_PASSWORD_OR_LOGIN_CORRECT = "Incorrect username or password",
-  IS_USER_NAME_IS_CORRECT = "Username must be at least 5 letters and use only English letters",
+  USER_NAME_ALREADY_EXIST = "A user with this username already exists",
+  PASSWORD_OR_LOGIN_DO_NOT_CORRECT = "Incorrect username or password",
+  USER_NAME_DO_NOT_CORRECT = "Username must be at least 5 letters and use only English letters",
   PASSWORDS_DO_NOT_MATCH = "Passwords do not match",
 }
 
 export enum SuccessType {
   NONE = "NONE",
-  IS_PASSWORD_CORRECT = "Password is correct",
-  IS_USER_NAME_IS_CORRECT = "User name is correct",
+  PASSWORD_IS_CORRECT = "Password is correct",
+  USER_NAME_IS_CORRECT = "User name is correct",
+  PASSWORDS_MATCH = "Passwords match",
 }
 
 export interface User {

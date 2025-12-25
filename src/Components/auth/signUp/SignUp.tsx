@@ -1,11 +1,12 @@
-import Button from "../../ui/Button/Button";
-
-import styles from "./signUp.module.scss";
 import { ErrorType, SuccessType } from "../../../dal/types";
 import type { ChangeEvent, FormEvent } from "react";
+
+import Button from "../../ui/Button/Button";
 import UserName from "./userName/UserName";
 import Password from "./password/Password";
 import ConfirmPassword from "./confirmPassword/ConfirmPassword";
+
+import styles from "./signUp.module.scss";
 
 interface SignUp {
   passwordValue: string;
@@ -42,7 +43,6 @@ const SignUp = ({
   signUp,
   confirmPasswordValue,
   getConfirmPasswordValue,
-  isPasswordMatch,
   isPasswordVisible,
   setIsPasswordVisible,
   isConfirmPasswordVisible,
@@ -68,13 +68,12 @@ const SignUp = ({
       />
 
       <ConfirmPassword
-        passwordValue={passwordValue}
         confirmPasswordValue={confirmPasswordValue}
         getConfirmPasswordValue={getConfirmPasswordValue}
-        isPasswordMatch={isPasswordMatch}
         isConfirmPasswordVisible={isConfirmPasswordVisible}
         setIsConfirmPasswordVisible={setIsConfirmPasswordVisible}
         errors={errors}
+        success={success}
       />
       <Button type="submit" label="Sign Up" className={styles["sign-up"]} />
 

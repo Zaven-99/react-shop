@@ -17,7 +17,7 @@ const ProductItem = React.memo(({ filteredProducts, loading }: ProductList) => {
   return (
     <>
       {filteredProducts.map((item) => (
-        <div key={item.id} className={styles["product-item"]}>
+        <article key={item.id} className={styles["product-item"]}>
           <FavoriteToggle item={item} favoriteComponent={false} />
           <img
             className={styles["product-img"]}
@@ -34,7 +34,7 @@ const ProductItem = React.memo(({ filteredProducts, loading }: ProductList) => {
           </div>
 
           <AddToCartControls item={item} />
-        </div>
+        </article>
       ))}
     </>
   );

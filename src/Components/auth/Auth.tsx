@@ -1,7 +1,10 @@
+import { useAuth } from "../../bll/useAuth";
+
 import SignUp from "./signUp/SignUp";
 import SignIn from "./signIn/SignIn";
-import { useAuth } from "../../bll/useAuth";
+
 import styles from "./auth.module.scss";
+
 const LoginForm = () => {
   const {
     isSignInForm,

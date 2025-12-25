@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store/store";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function useCart() {
   const dispatch = useDispatch<AppDispatch>();
@@ -11,6 +12,10 @@ export function useCart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const navigate = useNavigate();
+
+  const isLogin = localStorage.getItem("currentUser");
 
   useEffect(() => {
     window.scrollTo({
@@ -25,5 +30,7 @@ export function useCart() {
     items,
     EstimatedTax,
     EstimatedShippingHandling,
+    isLogin,
+    navigate,
   };
 }

@@ -1,7 +1,9 @@
-import type { ChangeEvent } from "react";
 import { ErrorType, SuccessType } from "../../../../dal/types";
+import type { ChangeEvent } from "react";
+
 import Button from "../../../ui/Button/Button";
 import Input from "../../../ui/input/Input";
+
 import styles from "../inputs.module.scss";
 
 interface Password {
@@ -60,9 +62,9 @@ const Password = ({
       {errors.password === ErrorType.INVALID_PASSWORD && (
         <p className={styles["error-message"]}>{ErrorType.INVALID_PASSWORD}</p>
       )}
-      {success.password === SuccessType.IS_PASSWORD_CORRECT && (
+      {success.password === SuccessType.PASSWORD_IS_CORRECT && (
         <p className={styles["success-message"]}>
-          {SuccessType.IS_PASSWORD_CORRECT}
+          {SuccessType.PASSWORD_IS_CORRECT}
         </p>
       )}
     </div>

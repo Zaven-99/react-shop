@@ -76,7 +76,7 @@ const NavBar = () => {
               onMouseLeave={() => setOpenUserMenu(false)}
               className={openUserMenu ? styles.open : styles.userName}
             >
-              {currentUser.username}
+              {currentUser.username.slice(0, 10) + "..."}
             </span>
             {openUserMenu && (
               <div

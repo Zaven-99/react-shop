@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./message.module.scss";
 const Message = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
+  const [showModal, setShowModal] = useState(() => {
     const isShown = localStorage.getItem("isShown");
-    if (!isShown) {
-      setShowModal(true);
-    }
-  }, []);
+    return !isShown;
+  });
 
   const handleClose = (
     e?: React.MouseEvent<HTMLDivElement | HTMLButtonElement>

@@ -1,10 +1,11 @@
-import Button from "../../ui/Button/Button";
-
-import styles from "./signIn.module.scss";
 import { ErrorType, SuccessType } from "../../../dal/types";
 import type { ChangeEvent, FormEvent } from "react";
-import UserName from "../signUp/userName/UserName";
+
+import Button from "../../ui/Button/Button";
 import Password from "../signUp/password/Password";
+import UserName from "../signUp/userName/UserName";
+
+import styles from "./signIn.module.scss";
 
 interface SignIn {
   errors: {

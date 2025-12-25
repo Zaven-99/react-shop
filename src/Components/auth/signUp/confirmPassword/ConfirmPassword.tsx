@@ -1,14 +1,14 @@
-import styles from "../inputs.module.scss";
+import { ErrorType, SuccessType } from "../../../../dal/types";
+import type { ChangeEvent } from "react";
+
 import Input from "../../../ui/input/Input";
 import Button from "../../../ui/Button/Button";
-import type { ChangeEvent } from "react";
-import { ErrorType } from "../../../../dal/types";
+
+import styles from "../inputs.module.scss";
 
 interface ConfirmPassword {
-  passwordValue: string;
   confirmPasswordValue: string;
   getConfirmPasswordValue: (e: ChangeEvent<HTMLInputElement>) => void;
-  isPasswordMatch: boolean;
   isConfirmPasswordVisible: boolean;
   setIsConfirmPasswordVisible: (value: boolean) => void;
   errors: {
@@ -16,13 +16,16 @@ interface ConfirmPassword {
     password?: ErrorType;
     confirmPassword?: ErrorType;
   };
+  success: {
+    userName?: SuccessType;
+    confirmPassword?: SuccessType;
+  };
 }
 const ConfirmPassword = ({
-  passwordValue,
   confirmPasswordValue,
   getConfirmPasswordValue,
-  isPasswordMatch,
   errors,
+  success,
   isConfirmPasswordVisible,
   setIsConfirmPasswordVisible,
 }: ConfirmPassword) => {
@@ -39,6 +42,12 @@ const ConfirmPassword = ({
           {ErrorType.PASSWORDS_DO_NOT_MATCH}
         </p>
       )}
+      {success.confirmPassword === SuccessType.PASSWORDS_MATCH && (
+        <p className={styles["success-message"]}>
+          {SuccessType.PASSWORDS_MATCH}
+        </p>
+      )}
+
       <Input
         value={confirmPasswordValue}
         onChange={getConfirmPasswordValue}
@@ -60,16 +69,6 @@ const ConfirmPassword = ({
           onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
           className={styles["toggle-password"]}
         />
-      )}
-
-      {isPasswordMatch ? (
-        <p className={styles["success-message"]}>Passwords match</p>
-      ) : (
-        confirmPasswordValue.length > 0 &&
-        passwordValue.length > 0 &&
-        !isPasswordMatch && (
-          <p className={styles["error-message"]}>Passwords do not match</p>
-        )
       )}
     </div>
   );

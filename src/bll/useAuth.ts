@@ -37,12 +37,12 @@ export const useAuth = () => {
       userName: !trimmed
         ? ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY
         : !isValid
-        ? ErrorType.IS_USER_NAME_IS_CORRECT
+        ? ErrorType.USER_NAME_DO_NOT_CORRECT
         : undefined,
     }));
     setSuccess((prev) => ({
       ...prev,
-      userName: isValid ? SuccessType.IS_USER_NAME_IS_CORRECT : undefined,
+      userName: isValid ? SuccessType.USER_NAME_IS_CORRECT : undefined,
     }));
   };
 
@@ -73,7 +73,7 @@ export const useAuth = () => {
       ...prev,
       password:
         hasUpper && hasLower && hasNum && hasSpecial
-          ? SuccessType.IS_PASSWORD_CORRECT
+          ? SuccessType.PASSWORD_IS_CORRECT
           : undefined,
     }));
 
@@ -92,6 +92,13 @@ export const useAuth = () => {
           ? ErrorType.PASSWORDS_DO_NOT_MATCH
           : undefined,
     }));
+    setSuccess((prev) => ({
+      ...prev,
+      confirmPassword:
+        value && value === passwordValue
+          ? SuccessType.PASSWORDS_MATCH
+          : undefined,
+    }));
   };
 
   const signUp = (e: React.FormEvent<HTMLFormElement>) => {
@@ -106,7 +113,7 @@ export const useAuth = () => {
     if (!trimmedUserName)
       newErrors.userName = ErrorType.LOGIN_OR_PASSWORD_INPUT_IS_EMPTY;
     else if (!/^[A-Za-z]{5,}$/.test(trimmedUserName))
-      newErrors.userName = ErrorType.IS_USER_NAME_IS_CORRECT;
+      newErrors.userName = ErrorType.USER_NAME_DO_NOT_CORRECT;
 
     const hasUpper = /[A-Z]/.test(trimmedPassword);
     const hasLower = /[a-z]/.test(trimmedPassword);
@@ -134,7 +141,7 @@ export const useAuth = () => {
       : [];
 
     if (users.some((u) => u.username === trimmedUserName)) {
-      setErrors({ userName: ErrorType.IS_USER_NAME_ALREADY_EXIST });
+      setErrors({ userName: ErrorType.USER_NAME_ALREADY_EXIST });
       return;
     }
 
@@ -179,7 +186,7 @@ export const useAuth = () => {
     );
 
     if (!userExists) {
-      setErrors({ userName: ErrorType.IS_PASSWORD_OR_LOGIN_CORRECT });
+      setErrors({ userName: ErrorType.PASSWORD_OR_LOGIN_DO_NOT_CORRECT });
       return;
     }
 

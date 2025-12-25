@@ -23,7 +23,7 @@ const MoreSmartphoneItem: React.FC<MoreSmartphoneItem> = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div className={styles["more-product__item"]}>
+    <article className={styles["more-product__item"]}>
       <img className={styles["more-product-img"]} src={thumbnail} alt={title} />
       <div className={styles["wrapper"]}>
         <h2 className={styles["more-product-title"]}>
@@ -41,7 +41,7 @@ const MoreSmartphoneItem: React.FC<MoreSmartphoneItem> = ({
           label="Shop Now"
         />
       </div>
-    </div>
+    </article>
   );
 };
 

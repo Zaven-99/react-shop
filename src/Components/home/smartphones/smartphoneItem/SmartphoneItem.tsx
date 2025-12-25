@@ -25,7 +25,7 @@ const SmartphoneItem: React.FC<SmartphoneItem> = ({
   const item = { id, title, price, thumbnail, category, brand };
 
   return (
-    <div className={styles["product-item"]}>
+    <article className={styles["product-item"]}>
       <FavoriteToggle item={item} favoriteComponent={false} />
 
       <img className={styles["product-img"]} src={thumbnail} alt={title} />
@@ -41,7 +41,7 @@ const SmartphoneItem: React.FC<SmartphoneItem> = ({
         className={styles.btn}
         label="Buy Now"
       />
-    </div>
+    </article>
   );
 };
 
